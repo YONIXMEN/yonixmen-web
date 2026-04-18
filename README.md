@@ -1,0 +1,351 @@
+[1Principal.html](https://github.com/user-attachments/files/26847197/1Principal.html)
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YONIXMEN | Hot Wheels & Collections</title>
+
+    <link rel="icon" href="logoarriba.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+
+    <style>
+    * {
+        box-sizing: border-box;
+        margin: 0;  
+        padding: 0;
+    }
+
+    body {
+        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("fondo.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-color: #000;
+        color: #ffffff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* HEADER */
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        background: rgba(0,0,0,0.9);
+        padding: 20px;
+    }
+
+    .logo {
+        width: 100px;
+        filter: drop-shadow(0 0 10px #17e6e6);
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    .logo.playing {
+        filter: drop-shadow(0 0 20px red);
+    }
+
+    .logo:hover {
+        transform: scale(1.1) rotate(-5deg);
+    }
+
+    h1 {    
+        font-family: 'Metal Mania', cursive;
+        font-size: clamp(10px, 6vw, 80px);
+        color: #ffffff;
+    }
+
+    /* MENÚ */
+    .nav {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        background: rgba(0,0,0,0.95);
+        padding: 15px 0;
+        position: relative;
+        margin-top: 25px;
+    }
+
+    .nav::before,
+    .nav::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #17e6e6;
+        box-shadow: 0 0 5px #17e6e6;
+    }
+
+    .nav::before { top: 0; }
+    .nav::after { bottom: 0; }
+
+    .nav a,
+    .nav span {
+        color: #17e6e6;
+        text-decoration: none;
+        padding: 10px 22px;
+        border-radius: 25px;
+    }
+
+    .nav a:hover {
+        background: #17e6e6;
+        color: black;
+    }
+
+    .nav .activo {
+        background: #17e6e6;
+        color: black;
+        font-weight: bold;
+    }
+
+    /* CONTENIDO */
+    .intro {
+        text-align: center;
+        max-width: 800px;
+        margin: 40px auto;
+        background: rgba(15, 15, 15, 0.9);
+        padding: 30px;
+        border-radius: 20px;
+    }
+ .videonuevo {
+        text-align: center;
+        padding: 15px;
+        
+    }
+    .intro p {
+        margin-bottom: 8px;
+    }
+
+    .intro strong {
+        display: block;
+        margin-top: 30px;
+    }
+
+    .highlight { 
+        color: #17e6e6; 
+        font-weight: bold; 
+    }
+
+    /* BOTÓN */
+    .youtube-btn {
+        margin-top: 25px;
+    }
+
+    .youtube-btn a {
+        background: #ff0000;
+        color: white;
+        padding: 15px 35px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* VIDEO */
+    .video-container {
+    width: 70%;
+    max-width: 600px;
+    height: 340px;
+    margin: 30px auto;
+}
+
+    .video-container iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* REDES */
+    .redes {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .redes a {
+        text-decoration: none;
+        color: white;
+        background: rgba(0,0,0,0.8);
+        padding: 10px 20px;
+        border-radius: 30px;
+        border: 2px solid red;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .tips {
+        margin: 50px auto;
+        padding: 30px;
+        max-width: 900px;
+        background: rgba(0,0,0,0.7);
+        border-radius: 15px;
+        box-shadow: 0 0 15px #00f7ff;
+    }
+
+    .tips h2 {
+        text-align: center;
+        color: #00f7ff;
+        margin-bottom: 25px;
+    }
+
+    .tip {
+        margin-bottom: 20px;
+        padding: 15px;
+        border-left: 4px solid #00f7ff;
+        background: rgba(255,255,255,0.05);
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+
+    .tip:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 10px #00f7ff;
+    }
+
+    .tip h3 {
+        margin-bottom: 8px;
+        color: #ffffff;
+    }
+
+    .tip p {
+        color: #ccc;
+    }
+    </style>
+    </head>
+
+    <body>
+
+    <header class="header">
+        <img src="logo.png" class="logo" onclick="playIntro()">
+        <h1>YONIXMEN</h1>
+    </header>
+
+    <audio id="introAudio">
+        <source src="intro.mp3">
+    </audio>
+
+    <script>
+    const audio = document.getElementById("introAudio");
+    const logo = document.querySelector(".logo");
+
+    function playIntro() {
+        if (audio.paused) {
+            audio.play();
+            logo.classList.add("playing");
+        } else {
+            audio.pause();
+            logo.classList.remove("playing");
+        }
+    }
+
+    /* cuando termina la canción */
+    audio.addEventListener("ended", () => {
+        logo.classList.remove("playing");
+    });
+    </script>
+
+    <nav class="nav">
+        <a href="1Principal.html" class="activo">INICIO</a>
+        <a href="sobre-mi.html">SOBRE MI</a>
+        <a href="colecciones.html">MI COLECCIONES</a>
+    </nav>
+
+    <div class="intro">
+        <p>¡Hey, qué tal coleccionistas! Bienvenidos a <span class="highlight">YonixMen</span> 🚗🔥</p>
+        <p>Aquí comparto mi pasión por los Hot Wheels Treasure Hunt, STH y modelos exclusivos 💎</p>
+        <p>(STH), unboxings épicos y modelos exclusivos</p>
+        <p>Subo contenido nuevo cada semana. ¡No te pierdas el próximo hallazgo!</p>
+
+        <div class="youtube-btn">
+            <a href="https://www.youtube.com/@yonixmen" target="_blank">
+                🔴 ¡SUSCRÍBETE AHORA!
+            </a>
+        </div>
+        
+<div class="videonuevo"></div>
+
+<p>🔥 MIRA EL ULTIMO VIDEO DEL CANAL: 👇</p>
+    </div>
+
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/v31AfueWd50" allowfullscreen></iframe>
+
+    <section class="tips">
+        <h2>🧠 TIPS PARA COLECCIONISTAS:</h2>
+
+        <div class="tip">
+            <h3>🔍 Cómo identificar un Treasure Hunt (TH)</h3>
+            <p>
+                Busca el símbolo de llama Plateada 🔥 en el auto o en el empaque. 
+                Los mejor acabado.
+            </p>
+        </div>
+
+        <div class="tip">
+            <h3>🔍 Cómo identificar un Super Treasure Hunt (STH)</h3>
+            <p>
+                Busca el símbolo de llama Dorada 🔥 en el auto o en el empaque. 
+            <p>Los Super Treasure Hunt suelen tener llantas de goma y la pintura es clomado mejor acabado.</p> 
+            </p>
+        </div>
+
+        <div class="tip">
+            <h3>💎 Diferencia entre TH y STH</h3>
+            <p>
+                Los Super Treasure Hunt (STH) tienen pintura Spectraflame, 
+                ruedas Real Riders y son mucho más raros que los TH normales.
+            </p>
+        </div>
+
+        <div class="tip">
+            <h3>📦 Cuida tus autos</h3>
+            <p>
+                Evita la humedad, el polvo y el sol directo. 
+                Guarda tus autos en vitrinas o cajas protectoras.
+            </p>
+        </div>
+
+        <div class="tip">
+            <h3>🛒 Dónde encontrar mejores modelos</h3>
+            <p>
+                Revisa tiendas temprano, supermercados y ferias. 
+                Los mejores modelos se agotan rápido.                 
+                <p>En los Centro Comerciales: Ripley, Tottus, Plaza Vea, Metro.</p>
+            <p>En las tiendas: Oxxo y Tienda Mass.</p> 
+            </p>
+        </div>
+
+        <div class="tip">
+            <h3>⚡ Revisa siempre las cajas nuevas</h3>
+            <p>
+                Cuando llegan cajas nuevas (case fresh), tienes más probabilidad 
+                de encontrar TH y STH o modelos exclusivos.
+            </p>
+        </div>
+    </section>
+
+    <div class="redes">
+
+        <a href="https://www.youtube.com/@yonixmen" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" width="30">
+            YouTube
+        </a>
+
+        <a href="https://www.instagram.com/yonixmen/" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="25">
+            Instagram Personal
+        </a>
+
+        <a href="https://www.instagram.com/yonix_men/" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="25">
+            Instagram Canal
+        </a>
+
+    </div>
+
+    </body>
+    </html>
