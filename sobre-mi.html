@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre Mi | YONIXMEN</title>
+
+<link rel="icon" href="logoarriba.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("fondo.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #000;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* IMAGEN DEL AUTO */
+.auto-img {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.auto-img img {
+    width: 100%;
+    max-width: 180px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #17e6e6;
+    transition: 0.3s;
+}
+
+.auto-img img:hover {
+    transform: scale(1.05);
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: rgba(0,0,0,0.9);
+    padding: 20px;
+}
+
+.logo {
+    width: 100px;
+    filter: drop-shadow(0 0 10px #17e6e6);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.logo.playing {
+    filter: drop-shadow(0 0 20px red);
+}
+
+.logo:hover {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+h1 {    
+    font-family: 'Metal Mania', cursive;
+    font-size: clamp(10px, 6vw, 80px);
+    color: #ffffff;
+}
+
+/* MENÚ */
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    background: rgba(0,0,0,0.95);
+    padding: 15px 0;
+    position: relative;
+    margin-top: 25px;
+}
+
+.nav::before,
+.nav::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #17e6e6;
+    box-shadow: 0 0 5px #17e6e6;
+}
+
+.nav::before { top: 0; }
+.nav::after { bottom: 0; }
+
+.nav a {
+    color: #17e6e6;
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    background: #17e6e6;
+    color: black;
+}
+
+.nav .activo {
+    background: #17e6e6;
+    color: black;
+    font-weight: bold;
+}
+
+/* CONTENIDO */
+.intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 60px auto;
+    background: rgba(15, 15, 15, 0.9);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #333;
+}
+
+.intro h2 {
+    margin-bottom: 15px;
+}
+
+.intro p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.highlight { 
+    color: #17e6e6; 
+    font-weight: bold; 
+}
+
+/* SEPARACIÓN */
+.separado {
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 1px solid #17e6e6;
+}
+
+.separado p {
+    color: #ccc;
+}
+
+/* REDES */
+.redes {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.redes a {
+    text-decoration: none;
+    color: white;
+    background: rgba(0,0,0,0.8);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 2px solid #ff0000;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.redes a:hover { 
+    background: #17e6e6; 
+    color: #000; 
+    transform: translateX(-5px); 
+}
+
+@media (max-width: 480px) {
+    .header { flex-direction: column; }
+    .logo { width: 100px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- AUDIO -->
+
+<audio id="introAudio">
+    <source src="intro.mp3">
+</audio>
+
+<script>
+document.getElementById("introAudio");
+document.querySelector(".logo");
+
+function playIntro() {
+    if (audio.paused) {
+        audio.play();
+        logo.classList.add("playing");
+    } else {
+        audio.pause();
+        logo.classList.remove("playing");
+    }
+}
+
+/* cuando termina la canción */
+audio.addEventListener("ended", () => {
+    logo.classList.remove("playing");
+});
+</script>
+
+<!-- HEADER -->
+<header class="header">
+    <img src="logo.png" class="logo" onclick="playIntro()" alt="Logo YonixMen">
+    <a href="1Principal.html" style="text-decoration:none;">
+        <h1>YONIXMEN</h1>
+    </a>
+</header>
+
+<!-- MENÚ -->
+<nav class="nav">
+    <a href="1Principal.html">INICIO</a>
+    <a href="sobre-mi.html" class="activo">SOBRE MI</a>
+    <a href="colecciones.html">MI COLECCIONES</a>
+</nav>
+
+<!-- CONTENIDO -->
+<div class="intro">
+
+    <h2>Sobre Mí</h2>
+
+    <p>
+        ¡Hola! Me llamo Jhonny, mejor conocido como 
+        <span class="highlight">YonixMen</span> 🔥
+    </p>
+
+    <p>
+        El primer auto que conseguí fue de la película <strong>Volver al Futuro</strong>.
+        En ese entonces había salido con mis amigos y, pasando por la sección de juguetes,
+        encontré el auto colgado.
+    </p>
+
+    <!-- IMAGEN -->
+    <div class="auto-img">
+        <img src="delorean.png" alt="Auto Volver al Futuro">
+    </div>
+
+    <p>
+        Fue un encuentro a primera vista y no dudé en comprarlo. Al llegar a casa,
+        no lo quise abrir porque tenía miedo de que se dañara.
+    </p>
+
+    <!-- SECCIÓN SEPARADA -->
+    <div class="separado">
+        <p>
+            Después busqué en internet qué otros modelos había de películas y series,
+            y fue ahí donde me llamó mucho más la atención.
+        </p>
+
+        <p>
+            Luego encontré autos de Batman 🦇, y ahí comenzó todo:
+            mi fanatismo por coleccionar Hot Wheels de películas y series.
+        </p>
+    </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+const audio = document.getElementById("introAudio");
+const logo = document.querySelector(".logo");
+
+function playIntro() {
+    if (audio.paused) {
+        audio.play();
+        logo.classList.add("playing");
+    } else {
+        audio.pause();
+        logo.classList.remove("playing");
+    }
+}
+
+audio.addEventListener("ended", () => {
+    logo.classList.remove("playing");
+});
+</script>
+
+<!-- REDES -->
+<div class="redes">
+
+    <a href="https://www.youtube.com/@yonixmen" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" width="30">
+        YouTube
+    </a>
+
+    <a href="https://www.instagram.com/yonixmen/" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="25">
+        Instagram Personal
+    </a>
+
+    <a href="https://www.instagram.com/yonix_men/" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="25">
+        Instagram Canal
+    </a>
+
+</div>
+
+</body>
+</html>
